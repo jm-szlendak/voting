@@ -1,0 +1,5 @@
+image:
+  repository: voting-app
+
+port: 80
+ 

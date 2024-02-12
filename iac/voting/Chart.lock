@@ -1,0 +1,6 @@
+dependencies:
+- name: voting-app
+  repository: file://charts/voting-app
+  version: 0.1.0
+digest: sha256:538b93be07c4d34eeeebf2cac9d5b79672998db6c975935f1ee852a0c205fc52
+generated: "2024-02-12T14:49:51.072223+01:00"
