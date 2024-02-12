@@ -1,4 +1,4 @@
-FROM java:openjdk-8-jdk-alpine
+FROM eclipse-temurin:21-jdk-alpine
 
 #RUN apt-get update -qq && apt-get install -y maven && apt-get clean
 
