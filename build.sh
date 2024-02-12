@@ -6,6 +6,8 @@ while :; do
   case $1 in
     --repository) REPOSITORY=${2}
     shift;;
+    --tag-as-latest) TAG_AS_LATEST=1
+    shift;;
     *) break
   esac
   shift
@@ -31,5 +33,11 @@ for service in services/*; do
     docker build -t "$REPOSITORY/$service_name:$REVISION" "$service";
     
     docker push "$REPOSITORY/$service_name:$REVISION";
+
+    if [ "$TAG_AS_LATEST" ]; then
+      docker tag "$REPOSITORY/$service_name:$REVISION" "$REPOSITORY/$service_name:latest";
+      docker push "$REPOSITORY/$service_name:latest";
+    fi
   fi
 done
+
