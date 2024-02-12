@@ -5,3 +5,5 @@ global:
     # Overrides the image tag whose default is the chart appVersion.
     tag: ""
   environment: "test"
+
+redis: {}

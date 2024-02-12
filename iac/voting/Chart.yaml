@@ -28,3 +28,6 @@ dependencies:
   - name: voting-app
     repository: "file://charts/voting-app"
     version: "0.1.0"
+  - name: redis
+    repository: https://charts.bitnami.com/bitnami 
+    version: 18.12.1

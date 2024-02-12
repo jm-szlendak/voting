@@ -22,3 +22,13 @@ spec:
             - name: http
               containerPort: {{ .Values.port }}
               protocol: TCP
+          env:
+            - name: REDIS_HOST
+              value: 'voting-redis-headless'
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: voting-redis
+                  key: redis-password
+
+

@@ -11,10 +11,13 @@ import json
 option_a = os.getenv('OPTION_A', "One")
 option_b = os.getenv('OPTION_B', "Two")
 redis_host = os.getenv('REDIS_HOST', "redis")
+redis_passwd = os.getenv('REDIS_PASSWORD', "redis")
+
+print('redis host is ' + redis_host )
 
 hostname = socket.gethostname()
 
-redis = connect_to_redis(redis_host)
+redis = connect_to_redis(redis_host,redis_passwd)
 app = Flask(__name__)
 
 
