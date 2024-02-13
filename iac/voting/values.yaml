@@ -7,3 +7,9 @@ global:
   environment: "test"
 
 redis: {}
+
+ingress:
+  hosts:
+  - name: voting.szlendak.ovh
+    serviceName: voting-voting-app
+    servicePort: "80"

@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ include "voting.fullname" . }}
+  labels:
+    {{- include "voting.labels" . | nindent 4 }}
+spec:
+  ingressClassName: nginx
+  rules:
+    {{- range $host := .Values.ingress.hosts }}
+    - host: {{ $host.name }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ $host.serviceName }}
+                port: 
+                  number: {{ $host.servicePort }}
+    {{- end -}}
