@@ -17,3 +17,8 @@ ingress:
   - name: results.szlendak.ovh
     serviceName: voting-voting-results
     servicePort: "80"
+
+postgresql:
+  primary:
+    initdb:
+      scriptsConfigMap: postgres-init-script
