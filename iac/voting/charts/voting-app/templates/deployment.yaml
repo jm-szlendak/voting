@@ -24,7 +24,7 @@ spec:
               protocol: TCP
           env:
             - name: REDIS_HOST
-              value: 'voting-redis-headless'
+              value: 'voting-redis-master'
             - name: REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
