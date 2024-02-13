@@ -13,3 +13,7 @@ ingress:
   - name: voting.szlendak.ovh
     serviceName: voting-voting-app
     servicePort: "80"
+
+  - name: results.szlendak.ovh
+    serviceName: voting-voting-results
+    servicePort: "80"

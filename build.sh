@@ -7,7 +7,7 @@ while :; do
     --repository) REPOSITORY=${2}
     shift;;
     --tag-as-latest) TAG_AS_LATEST=1
-    shift;;
+    ;;
     *) break
   esac
   shift

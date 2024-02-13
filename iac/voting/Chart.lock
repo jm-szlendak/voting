@@ -5,8 +5,11 @@ dependencies:
 - name: redis
   repository: https://charts.bitnami.com/bitnami
   version: 18.12.1
+- name: postgresql
+  repository: https://charts.bitnami.com/bitnami
+  version: 14.0.5
 - name: nginx-ingress-controller
   repository: https://charts.bitnami.com/bitnami
   version: 10.3.5
-digest: sha256:2c1937c976acd8076f133665aac7407d65102a1ad6e366ce4306231837da2f5b
-generated: "2024-02-13T09:11:57.61945+01:00"
+digest: sha256:f585b6c89772046582c18a9741a93c2975943212ce4758032a6ce4b38d8353e5
+generated: "2024-02-13T12:20:09.679161+01:00"
