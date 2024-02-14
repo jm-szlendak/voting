@@ -35,6 +35,7 @@ Common labels
 */}}
 {{- define "voting-results.labels" -}}
 helm.sh/chart: {{ include "voting-results.chart" . }}
+environment: {{ .Values.global.environment }}
 {{ include "voting-results.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
