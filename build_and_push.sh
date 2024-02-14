@@ -4,7 +4,7 @@ set -ex
 
 while :; do
   case $1 in
-    --repository) REPOSITORY=${2}
+    --registry) REGISTRY=${2}
     shift;;
     --tag-as-latest) TAG_AS_LATEST=1
     ;;
@@ -13,8 +13,8 @@ while :; do
   shift
 done
 
-if [ -z "$REPOSITORY" ]; then
-  echo "Please provide a docker repository name with --repository option"
+if [ -z "$REGISTRY" ]; then
+  echo "Please provide a docker registry name with --registry option"
   exit 1
 fi
 
@@ -30,13 +30,13 @@ for service in services/*; do
   if [ -f "$service/Dockerfile" ]; then
 
     service_name=$(basename "$service");
-    docker build -t "$REPOSITORY/$service_name:$REVISION" "$service";
+    docker build -t "$REGISTRY/$service_name:$REVISION" "$service";
     
-    docker push "$REPOSITORY/$service_name:$REVISION";
+    docker push "$REGISTRY/$service_name:$REVISION";
 
     if [ "$TAG_AS_LATEST" ]; then
-      docker tag "$REPOSITORY/$service_name:$REVISION" "$REPOSITORY/$service_name:latest";
-      docker push "$REPOSITORY/$service_name:latest";
+      docker tag "$REGISTRY/$service_name:$REVISION" "$REGISTRY/$service_name:latest";
+      docker push "$REGISTRY/$service_name:latest";
     fi
   fi
 done

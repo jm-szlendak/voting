@@ -13,3 +13,10 @@ variable "tag" {
   type          = string
   description = "docker image tag to be deployed"
 }
+
+
+variable "image_registry_url" {
+  type = string
+  description = "docker image registry to which images are uploaded"
+  default = "szlendakjakub"
+}

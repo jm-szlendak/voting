@@ -16,5 +16,9 @@ resource "helm_release" "voting" {
   set {
     name = "global.image.tag"
     value = var.tag
-  } 
+  }
+  set {
+    name = "global.image.registryUrl"
+    value = var.image_registry_url
+  }
 }
