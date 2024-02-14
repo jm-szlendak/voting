@@ -15,6 +15,6 @@ resource "helm_release" "voting" {
 
   set {
     name = "global.image.tag"
-    value = var.deployTag
+    value = var.tag
   } 
 }

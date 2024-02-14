@@ -9,7 +9,7 @@ variable "kubeconfig_path" {
   default     = "~/.kube/config"
 }
 
-variable "deployTag" {
+variable "tag" {
   type          = string
   description = "docker image tag to be deployed"
 }
