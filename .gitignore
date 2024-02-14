@@ -2,3 +2,4 @@
 **/*.tgz
 **/*.pyc
 **/*.class
+.vscode/settings.json
