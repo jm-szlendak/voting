@@ -11,36 +11,33 @@ var express = require('express'),
 io.set('transports', ['polling']);
 
 var port = process.env.PORT || 4000;
+var client;
+
+async function setupClient() {
+  client = new pg.Client()
+  await client.connect()
+
+  console.log("Connected to db");
+
+  getVotes(client)
+}
+
+setupClient()
 
 
 io.sockets.on('connection', function (socket) {
+  console.log('connected with socket')
   socket.emit('message', { text : 'Welcome!' });
 
   socket.on('subscribe', function (data) {
+    console.log('joing data.channel')
     socket.join(data.channel);
+
   });
 });
 
 var query = require('./views/config.json');
 
-async.retry(
-  {times: 1000, interval: 1000},
-  function(callback) {
-    pg.connect(function(err, client, done) {
-      if (err) {
-        console.error("Failed to connect to db", err);
-      }
-      callback(err, client);
-    });
-  },
-  function(err, client) {
-    if (err) {
-      return console.err("Giving up");
-    }
-    console.log("Connected to db");
-    getVotes(client);
-  }
-);
 
 
 function getVotes(client) {
