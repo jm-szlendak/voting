@@ -1,5 +1,6 @@
 image:
   repository: voting-app
+  pullPolicy: Always
 
 port: 80
  

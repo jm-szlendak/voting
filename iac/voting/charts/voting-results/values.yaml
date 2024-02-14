@@ -1,5 +1,5 @@
 image:
   repository: voting-results
-
+  pullPolicy: Always
 port: 80
  

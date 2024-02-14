@@ -5,18 +5,10 @@ global:
     # Overrides the image tag whose default is the chart appVersion.
     tag: ""
   environment: "test"
-
+  domainName: szlendak.ovh
 redis: {}
 
-ingress:
-  hosts:
-  - name: voting.szlendak.ovh
-    serviceName: voting-voting-app
-    servicePort: "80"
 
-  - name: results.szlendak.ovh
-    serviceName: voting-voting-results
-    servicePort: "80"
 
 postgresql:
   primary:

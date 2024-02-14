@@ -1,33 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "voting-worker.fullname" . }}
+  name: {{ include "voting.fullname" . }}
   labels:
-    {{- include "voting-worker.labels" . | nindent 4 }}
+    {{- include "voting.labels" . | nindent 4 }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      {{- include "voting-worker.selectorLabels" . | nindent 6 }}
+      {{- include "voting.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "voting-worker.labels" . | nindent 8 }}
+        {{- include "voting.labels" . | nindent 8 }}
     spec:
       containers:
         - name: {{ .Chart.Name }}
-          image: {{ include "voting-worker.image" . }}
+          image: {{ include "voting.image" . }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: REDIS_HOST
-              value: 'voting-redis-master'
+              value: {{ include "voting.redis.host" . }}
             - name: REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: voting-redis
+                  name: {{ include "voting.redis.secrets" . }}
                   key: redis-password
             - name: PG_HOST
-              value: 'voting-postgresql'
+              value: {{ include "voting.postgresql.host" . }}
             - name: PG_USER
               value: 'postgres'
             - name: PG_DATABASE
@@ -35,6 +35,6 @@ spec:
             - name: PG_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: voting-postgresql
+                  name: {{ include "voting.postgresql.secrets" . }}
                   key: postgres-password
 

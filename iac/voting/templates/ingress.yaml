@@ -7,15 +7,24 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    {{- range $host := .Values.ingress.hosts }}
-    - host: {{ $host.name }}
+    
+    - host: {{ .Values.global.environment }}.voting.{{ .Values.global.domainName }}
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: {{ $host.serviceName }}
+                name: {{ .Release.Name }}-voting-app
                 port: 
-                  number: {{ $host.servicePort }}
-    {{- end -}}
+                  number: 80
+    - host: {{ .Values.global.environment }}.results.{{ .Values.global.domainName }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Release.Name }}-voting-results
+                port: 
+                  number: 80

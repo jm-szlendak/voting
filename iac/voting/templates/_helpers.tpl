@@ -60,3 +60,42 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{/*
+Expand the name of the chart.
+*/}}
+{{- define "voting.postgresql.secrets" -}}
+{{- .Release.Name }}-postgresql
+{{- end }}
+
+{{/*
+Expand the name of the chart.
+*/}}
+{{- define "voting.postgresql.host" -}}
+{{- .Release.Name }}-postgresql
+{{- end }}
+{{/*
+Expand the name of the chart.
+*/}}
+{{- define "voting.redis.secrets" -}}
+{{- .Release.Name }}-redis
+{{- end }}
+
+
+{{/*
+Expand the name of the chart.
+*/}}
+{{- define "voting.redis.host" -}}
+{{- .Release.Name }}-redis-master
+{{- end }}
+
+
+{{/*
+Expand the image
+*/}}
+{{- define "voting.image" -}}
+{{- $registryUrl := .Values.global.image.registryUrl -}}
+{{- $repository := .Values.image.repository -}}
+{{- $tag := .Values.global.image.tag | default "latest" -}}
+{{- printf "%s/%s:%s" $registryUrl $repository $tag -}}
+{{- end }}

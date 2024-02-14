@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "voting-app.fullname" . }}
+  name: {{ include "voting.fullname" . }}
   labels:
-    {{- include "voting-app.labels" . | nindent 4 }}
+    {{- include "voting.labels" . | nindent 4 }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      {{- include "voting-app.selectorLabels" . | nindent 6 }}
+      {{- include "voting.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "voting-app.labels" . | nindent 8 }}
+        {{- include "voting.labels" . | nindent 8 }}
     spec:
       containers:
         - name: {{ .Chart.Name }}
-          image: {{ include "voting-app.image" . }}
+          image: {{ include "voting.image" . }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
@@ -24,11 +24,11 @@ spec:
               protocol: TCP
           env:
             - name: REDIS_HOST
-              value: 'voting-redis-master'
+              value: {{ include "voting.redis.host" . }}
             - name: REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: voting-redis
+                  name: {{ include "voting.redis.secrets" . }}
                   key: redis-password
 
 

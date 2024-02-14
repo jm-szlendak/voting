@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "voting-results.fullname" . }}
+  name: {{ include "voting.fullname" . }}
   labels:
-    {{- include "voting-results.labels" . | nindent 4 }}
+    {{- include "voting.labels" . | nindent 4 }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      {{- include "voting-results.selectorLabels" . | nindent 6 }}
+      {{- include "voting.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "voting-results.labels" . | nindent 8 }}
+        {{- include "voting.labels" . | nindent 8 }}
     spec:
       containers:
         - name: {{ .Chart.Name }}
-          image: {{ include "voting-results.image" . }}
+          image: {{ include "voting.image" . }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
@@ -24,7 +24,7 @@ spec:
               protocol: TCP
           env:
             - name: PGHOST
-              value: 'voting-postgresql'
+              value: {{ include "voting.postgresql.host" . }}
             - name: PGUSER
               value: 'postgres'
             - name: PGDATABASE
@@ -32,7 +32,7 @@ spec:
             - name: PGPASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: voting-postgresql
+                  name: {{ include "voting.postgresql.secrets" . }}
                   key: postgres-password
 
 
