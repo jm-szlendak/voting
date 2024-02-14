@@ -15,3 +15,10 @@ This will build docker images and push them, tagging with current commit hash.
 ```
 sh deploy.sh --env yourenv --tag 123abc456efg
 ```
+
+# TODO
+
+- k8s namespaces
+- k8s service accounts
+- dont use postgres root user
+- dont use redis root user
